@@ -106,7 +106,7 @@ namespace ColorMap
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+        {//intento usa bandera para que habilite al hacer clic el poder dibujar en el panel1
             if (!enablePaint)
             {
                 isDrawing = true;
