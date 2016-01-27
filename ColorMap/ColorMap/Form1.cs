@@ -14,6 +14,7 @@ namespace ColorMap
     {
         private SolidBrush myBrush;
         private Graphics myGraphics;
+        private Bitmap myBitmap;
         private bool isDrawing = false;
         //Bandera
         private bool enablePaint = false;
@@ -26,7 +27,9 @@ namespace ColorMap
         private void Form1_Load(object sender, EventArgs e)
         {
             myBrush = new SolidBrush(panel2.BackColor);
+            myBitmap = new Bitmap(panel1.Width, panel1.Height);
             myGraphics = panel1.CreateGraphics();
+            
         }
 
         private void panel2_DoubleClick(object sender, EventArgs e)
@@ -90,18 +93,18 @@ namespace ColorMap
                 }
 
                 //Obtenemos alto y ancho del panel
-                int width = panel1.Width;
-                int height = panel1.Height;
-                //Inicializamos un objeto BitMap con las dimensiones del Panel
-                Bitmap bitMap = new Bitmap(width, height);
+                //int width = panel1.Width;
+                //int height = panel1.Height;
+                ////Inicializamos un objeto BitMap con las dimensiones del Panel
+                //Bitmap bitMap = new Bitmap(width, height);
                 //Inicializamos un objeto Rectangle en la posicion 0,0 y con dimensiones iguales a las del panel.
                 //0,0 y las mismas dimensiones del panel porque queremos tomar todo el panel
                 // o si solo queremos tomar una parte pues podemos dar un punto de inicio diferente y dimensiones distintas.
-                     Rectangle rec = new Rectangle(0, 0, width, height);
+                     //Rectangle rec = new Rectangle(0, 0, width, height);
                 //Este metodo hace la magia de copiar las graficas a el objeto Bitmap
-                panel1.DrawToBitmap(bitMap, rec);
+                //panel1.DrawToBitmap(myBitmap, rec);
                 // Y por ultimo salvamos el archivo pasando como parametro el nombre que asignamos en el saveDialogFile
-                bitMap.Save(saveFileDialog.FileName);
+               myBitmap.Save(saveFileDialog.FileName);
             }
         }
 
@@ -117,6 +120,11 @@ namespace ColorMap
         private void panel1_Click(object sender, EventArgs e)
         {
             enablePaint = true;
+        }
+
+        private void panel1_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }
